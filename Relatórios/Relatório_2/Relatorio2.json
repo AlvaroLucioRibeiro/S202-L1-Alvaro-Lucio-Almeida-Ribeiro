@@ -1,0 +1,32 @@
+[
+    {
+        "Professor": "Lucas",
+        "Assunto": "Programacao Orientada a Objeto",
+        "Alunos": [
+            "Maria",
+            "Pedro",
+            "Álvaro",
+            "Cristiane"
+        ]
+    },
+    {
+        "Professor": "Evandro",
+        "Assunto": "Banco de Dados",
+        "Alunos": [
+            "Fernanda",
+            "Álvaro",
+            "Paulo",
+            "Beatriz"
+        ]
+    },
+    {
+        "Professor": "Estevan",
+        "Assunto": "Calculo II",
+        "Alunos": [
+            "Manoel",
+            "Wellinton",
+            "Jean",
+            "Ana Paula"
+        ]
+    }
+]

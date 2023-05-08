@@ -1,0 +1,43 @@
+Nome: Álvaro Lúcio Almeida Ribeiro
+Mat.: 163
+
+Relatório 7
+
+1) Agregação
+MATCH (n:PhoneNumber) RETURN count(*);
+MATCH (n:IP) RETURN count(*);
+MATCH (n:BankAccount) RETURN count(*);
+MATCH (n:DeliveryAddress) RETURN count(*);
+MATCH (n:Login) RETURN count(*);
+
+2) Função Matemática 
+MATCH (n:IP)
+WITH count(n) AS ipCount
+MATCH (n:PhoneNumber)
+WITH count(n) AS phoneCount, ipCount
+RETURN phoneCount/ipCount AS phonePerIP;
+
+RETURN ABS(1921 - 2023);
+
+RETURN FLOOR(0.59), FLOOR(0.61);
+
+RETURN ROUND(8.99, 1);
+
+RETURN ROUND(7.11, 11);
+
+3) Função de String
+MATCH (p:PhoneNumber)
+WHERE p.phone = '028.9449.2300.3'
+RETURN substring(p.provider, 0, 4) AS result;
+
+MATCH (p:PhoneNumber)
+WHERE p.phone = '028.9449.2300.3'
+RETURN reverse(p.provider) AS result;
+
+MATCH (p:PhoneNumber)
+WHERE p.phone = '028.9449.2300.3'
+RETURN substring(p.provider,0,4), substring(p.provider,9);
+
+RETURN substring('Tire Está loucura de dizer que não te quero', 0, 17);
+
+RETURN REVERSE("subi no onibus");
