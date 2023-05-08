@@ -6,30 +6,30 @@ db.drop_all()
 
 game_db = Game(db)
 
-# Criar jogadores
-game_db.create_player(1, "Álvaro")
-game_db.create_player(2, "Cristiano Ronaldo")
-game_db.create_player(3, "Lionel Messi")
+# Criando os jogadores
+game_db.create_player(0, "Álvaro Ribeiro")
+game_db.create_player(1, "Cristiano Ronaldo")
+game_db.create_player(2, "Lionel Messi")
 
-# Atualizar jogador
+# Criando uma partida com os jogadores e o resultado
+player_ids = [0, 1, 2]
+result = "6x1 para Álvaro"
+game_db.create_match(player_ids, result)
+
+# Obtendo todas as partidas em que Álvaro Ribeiro participou
+matches = game_db.get_player_matches([0])
+for match in matches:
+    print(match["result"])
+    
+# Atualizando o nome de Álvaro para Álvaro Ribeiro
 game_db.update_player("Álvaro", "Álvaro Ribeiro")
 
-# Deletar jogador
-game_db.delete_player(3)
-
-# Get jogadores
+# Obtendo todos os jogadores do banco de dados
 players = game_db.get_players()
 for player in players:
     print(player["name"])
 
-# Criar um match
-game_db.create_match([1, 2], "Vitória de Álvaro por 3 a 1")
-
-# Get Match
-match = game_db.get_match(1)
-if match:
-    print(match["result"])
-else:
-    print("Match not found.")
+# Deletando o jogador Cristiano Ronaldo
+game_db.delete_player(2)
 
 game_db.close()

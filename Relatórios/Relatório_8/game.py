@@ -48,3 +48,6 @@ class Game:
             return result[0]["m"]
         else:
             return None
+        
+    def close(self):
+        self.db.close()
