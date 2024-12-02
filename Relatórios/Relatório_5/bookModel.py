@@ -1,13 +1,22 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
+
 class BookModel:
     def __init__(self, database):
         self.db = database
-        
+
     def create(self, _id: int, title: str, author: str, year: int, price: float):
         try:
-            res = self.db.collection.insert_one({"_id": _id, "titulo": title, "autor": author, "ano": year, "preco": price})
+            res = self.db.collection.insert_one(
+                {
+                    "_id": _id,
+                    "titulo": title,
+                    "autor": author,
+                    "ano": year,
+                    "preco": price,
+                }
+            )
             print(f"Book created with id: {res.inserted_id}")
             return str(res.inserted_id)
         except Exception as e:
@@ -34,7 +43,9 @@ class BookModel:
         if price:
             update_data["preco"] = price
         try:
-            res = self.db.collection.update_one({"_id": int(_id)}, {"$set": update_data})
+            res = self.db.collection.update_one(
+                {"_id": int(_id)}, {"$set": update_data}
+            )
             print(f"Book updated: {res.modified_count} document(s) modified")
             return res.modified_count
         except Exception as e:

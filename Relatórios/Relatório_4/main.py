@@ -5,14 +5,20 @@ db = Database(database="mercado", collection="compras")
 db.resetDatabase()
 
 
-result2 = db.collection.aggregate([
-    {"$unwind": "$produtos"},
-    {"$group": {
-        "_id": {"$dateToString": {"format": "%Y-%m-%d", "data": "$data"}},
-        "total": {"$sum": {"$multiply": ["$produtos.quantidade", "$produtos.preco"]}}
-    }},
-    {"$sort": {"_id": 1}}
-])
+result2 = db.collection.aggregate(
+    [
+        {"$unwind": "$produtos"},
+        {
+            "$group": {
+                "_id": {"$dateToString": {"format": "%Y-%m-%d", "data": "$data"}},
+                "total": {
+                    "$sum": {"$multiply": ["$produtos.quantidade", "$produtos.preco"]}
+                },
+            }
+        },
+        {"$sort": {"_id": 1}},
+    ]
+)
 
 writeAJson(result2, "Total de vendas por dia")
 

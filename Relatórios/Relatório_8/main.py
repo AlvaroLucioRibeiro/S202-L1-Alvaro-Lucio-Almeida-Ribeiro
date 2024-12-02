@@ -1,7 +1,7 @@
 from database import Database
 from game import Game
 
-db = Database("bolt://44.200.108.112:7687","neo4j","silver-expense-meanings")
+db = Database("bolt://44.200.108.112:7687", "neo4j", "silver-expense-meanings")
 db.drop_all()
 
 game_db = Game(db)
@@ -20,7 +20,7 @@ game_db.create_match(player_ids, result)
 matches = game_db.get_player_matches([0])
 for match in matches:
     print(match["result"])
-    
+
 # Atualizando o nome de Álvaro para Álvaro Ribeiro
 game_db.update_player("Álvaro", "Álvaro Ribeiro")
 
