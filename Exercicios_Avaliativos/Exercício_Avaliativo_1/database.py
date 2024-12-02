@@ -1,5 +1,6 @@
 from typing import Collection
-import pymongo # pip install pymongo
+import pymongo
+
 
 class Database:
     def __init__(self, database, collection):
@@ -7,10 +8,11 @@ class Database:
 
     def connect(self, database, collection):
         try:
-            connectionString = "mongodb+srv://root:root@cluster0.dmvklt7.mongodb.net/test" 
+            connectionString = (
+                "mongodb+srv://root:root@cluster0.dmvklt7.mongodb.net/test"
+            )
             self.clusterConnection = pymongo.MongoClient(
-                connectionString,
-                tlsAllowInvalidCertificates=True
+                connectionString, tlsAllowInvalidCertificates=True
             )
             self.db = self.clusterConnection[database]
             self.collection = self.db[collection]
@@ -19,7 +21,7 @@ class Database:
             print(e)
 
     def resetDatabase(self):
-        try: 
+        try:
             self.db.drop_collection(self.collection)
             print("Banco de dados resetado com sucesso!")
         except Exception as e:

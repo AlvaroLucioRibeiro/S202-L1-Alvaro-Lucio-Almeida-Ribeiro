@@ -49,7 +49,7 @@ class BooksCLI(SimpleCLI):
         if price:
             price = float(price)
         self.book_model.update(book_id, title, author, year, price)
-        
+
     def delete_book(self):
         book_id = str(input("Enter the book ID: "))
         self.book_model.delete(str(book_id))

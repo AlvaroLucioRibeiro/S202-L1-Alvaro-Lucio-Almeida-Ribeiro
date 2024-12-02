@@ -1,5 +1,6 @@
 from motorista import *
 
+
 class SimpleCLI:
     def __init__(self):
         self.commands = {}
@@ -18,6 +19,7 @@ class SimpleCLI:
             else:
                 print("Invalid command. Try again.")
 
+
 class MotoristaCLI(SimpleCLI):
     def __init__(self, motorista_Dao):
         super().__init__()
@@ -26,7 +28,7 @@ class MotoristaCLI(SimpleCLI):
         self.add_command("read", self.read)
         self.add_command("update", self.update)
         self.add_command("delete", self.delete)
-        
+
     def create(self):
         notafinal = 0
         # Criando um passageiro
@@ -36,20 +38,20 @@ class MotoristaCLI(SimpleCLI):
 
         corridas = []
         numeroCorridas = int(input("Digite o número de corridas? Maior ou igual a 1: "))
-        for i in range(numeroCorridas):    
+        for i in range(numeroCorridas):
             nota = int(input("Digite a nota da corrida: "))
             notafinal += nota
             distancia = float(input("Digite a distância percorrida: "))
             valor = float(input("Digite o valor da corrida: "))
             corrida = Corrida(nota, distancia, valor, passageiro.dict())
             corridas.append(vars(corrida))
-            
+
         # Criando um motorista e adicionando as corridas realizadas a sua lista
         motorista = Motorista(corridas, notafinal / numeroCorridas)
         # Salvando o motorista no banco de dados
         self.motorista_Dao.create(motorista)
         print("Motorista cadastrado com sucesso.")
-        
+
     def update(self):
         id = str(input("Entre com o id: "))
         motorista = self.motorista_Dao.update(id)
@@ -61,24 +63,23 @@ class MotoristaCLI(SimpleCLI):
 
         corridas = []
         numeroCorridas = int(input("Digite o número de corridas? Maior ou igual a 1: "))
-        for i in range(numeroCorridas):    
+        for i in range(numeroCorridas):
             nota = int(input("Digite a nota da corrida: "))
             distancia = float(input("Digite a distância percorrida: "))
             valor = float(input("Digite o valor da corrida: "))
             corrida = Corrida(nota, distancia, valor, passageiro.dict())
-            corridas.append(vars(corrida))  
+            corridas.append(vars(corrida))
         # Alterando as corridas realizadas
-        self.motorista_Dao.update(id)             
+        self.motorista_Dao.update(id)
         print("Motorista alterado com sucesso.")
 
-        
     def read(self):
         id = str(input("Entre com o id: "))
         motorista = self.motorista_Dao.read(id)
-        # imprimindo as corridas 
+        # imprimindo as corridas
         if motorista:
             print(f"Nota Final da soma das Corridas: {motorista['nota']}")
-            for motoristas in motorista['corridas']:
+            for motoristas in motorista["corridas"]:
                 print(f"-----------------------------------------------")
                 print(f"Nota: {motoristas['nota']}")
                 print(f"Distancia: {motoristas['distancia']}")
@@ -87,12 +88,12 @@ class MotoristaCLI(SimpleCLI):
                 print(f"Documento passageiro: {motoristas['passageiro']['documento']}")
         if not motorista:
             print("Não encontrado!!.")
-    
+
     def delete(self):
         id = str(input("Entre com o id: "))
         self.motorista_Dao.delete(id)
         print("Motorista deletado com sucesso.")
-    
+
     def run(self):
         print("Bem vindo ao Motorista CLI!")
         print("Comandos disponiveis: create, read, update, delete, quit")

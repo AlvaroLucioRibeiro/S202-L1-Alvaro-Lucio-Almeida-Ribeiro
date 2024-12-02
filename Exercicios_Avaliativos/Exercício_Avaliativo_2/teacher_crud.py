@@ -9,7 +9,7 @@ class TeacherCRUD:
     def read(self, name):
         query = f"MATCH(t:Teacher{{name:'{name}'}}) RETURN t"
         result = self.db.execute_query(query)
-        return [record['t'] for record in result]
+        return [record["t"] for record in result]
 
     def delete(self, name):
         query = f"MATCH(t:Teacher{{name:'{name}'}}) DETACH DELETE t"

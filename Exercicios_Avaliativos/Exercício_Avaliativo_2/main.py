@@ -1,9 +1,11 @@
-# Nome: Álvaro Lúcio Almeida Ribeiro 
-# Matrícula: 163 
+# Nome: Álvaro Lúcio Almeida Ribeiro
+# Matrícula: 163
 # Exercício Avaliativo 2
 
 from database import Database
 from teacher_crud import TeacherCRUD
+
+
 # --------------------------------------------------------------------------------------- #
 # Questão 3
 class SimpleCLI:
@@ -23,6 +25,7 @@ class SimpleCLI:
                 self.commands[command]()
             else:
                 print("Invalid command. Try again.")
+
 
 class TeacherCLI(SimpleCLI):
     def __init__(self, teacher_crud):
@@ -48,7 +51,7 @@ class TeacherCLI(SimpleCLI):
         name = input("Enter the teacher's name: ")
         newCpf = input("Enter the teacher's new cpf: ")
         self.teacher_crud.update(name, newCpf)
-        
+
     def delete_teacher(self):
         name = input("Enter the teacher's name: ")
         self.teacher_crud.delete(name)
@@ -57,6 +60,7 @@ class TeacherCLI(SimpleCLI):
         print("Welcome to the Teacher CLI!")
         print("Available commands: create, read, update, delete, quit")
         super().run()
+
 
 # --------------------------------------------------------------------------------------- #
 db = Database("bolt://18.206.250.26:7687", "neo4j", "twist-film-offers")

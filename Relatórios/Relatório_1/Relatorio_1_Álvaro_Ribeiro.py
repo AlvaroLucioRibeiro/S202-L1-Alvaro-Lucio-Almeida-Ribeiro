@@ -8,25 +8,30 @@
 
 # ----------------------------- Classe professor ----------------------------- #
 
+
 class Professor:
     def __init__(self, nome):
         self.nome = nome
 
     def ministrar_aula(self):
-        return(f"O professor, {self.nome} está ministrando uma aula sobre {aula.assunto}")
+        return (
+            f"O professor, {self.nome} está ministrando uma aula sobre {aula.assunto}"
+        )
 
 
 # ------------------------------- Classe Aluno ------------------------------- #
+
 
 class Aluno:
     def __init__(self, nome):
         self.nome = nome
 
     def presenca(self):
-        return (f"O aluno, {self.nome} está presente.")
+        return f"O aluno, {self.nome} está presente."
 
 
 # -------------------------------- Classe Aula ------------------------------- #
+
 
 class Aula:
     def __init__(self, professor, assunto):
@@ -44,6 +49,7 @@ class Aula:
             Ordenandoaux.append(aluno.presenca())
         AlunosAux = "\n".join(Ordenandoaux)
         return f"Presença na aula sobre {self.assunto}, ministrada pelo professor {professor.nome}:\n{AlunosAux}\n"
+
 
 # -------------------------------- Classe Main ------------------------------- #
 

@@ -1,6 +1,6 @@
 from typing import Collection
-import pymongo # pip install pymongo
-import dataset 
+import pymongo  # pip install pymongo
+import dataset
 
 
 class Database:
@@ -11,8 +11,7 @@ class Database:
         try:
             connectionString = "localhost:27017"
             self.clusterConnection = pymongo.MongoClient(
-                connectionString,
-                tlsAllowInvalidCertificates=True
+                connectionString, tlsAllowInvalidCertificates=True
             )
             self.db = self.clusterConnection[database]
             self.collection = self.db[collection]
@@ -21,7 +20,7 @@ class Database:
             print(e)
 
     def resetDatabase(self):
-        try: 
+        try:
             self.db.drop_collection(self.collection)
             self.collection.insert_many(dataset)
             print("Banco de dados resetado com sucesso!")
