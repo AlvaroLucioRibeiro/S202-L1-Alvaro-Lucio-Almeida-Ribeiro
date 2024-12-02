@@ -1,7 +1,7 @@
 class Game:
     def __init__(self, db):
         self.db = db
-        
+
     def create_player(self, player_id, player_name):
         query = "CREATE (:Player {id: $player_id, name: $player_name})"
         parameters = {"player_id": player_id, "player_name": player_name}
@@ -10,7 +10,7 @@ class Game:
     def update_player(self, old_name, new_name):
         query = "MATCH (p:Player {name: $old_name}) SET p.name = $new_name"
         parameters = {"old_name": old_name, "new_name": new_name}
-        result = self.db.execute_query(query, parameters)
+        self.db.execute_query(query, parameters)
 
     def delete_player(self, player_id):
         query = "MATCH (p:Player) WHERE id(p) = $player_id DETACH DELETE p"
@@ -39,7 +39,7 @@ class Game:
         parameters = {"player_ids": player_ids}
         result = self.db.execute_query(query, parameters)
         return [record["m"] for record in result]
-    
+
     def get_match(self, match_id):
         query = "MATCH (m:Match) WHERE id(m) = $match_id RETURN m"
         parameters = {"match_id": match_id}
@@ -48,6 +48,6 @@ class Game:
             return result[0]["m"]
         else:
             return None
-        
+
     def close(self):
         self.db.close()
