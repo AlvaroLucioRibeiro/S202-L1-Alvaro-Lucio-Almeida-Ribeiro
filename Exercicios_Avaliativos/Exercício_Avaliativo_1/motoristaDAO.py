@@ -1,10 +1,11 @@
 from bson.objectid import ObjectId
 from motorista import *
 
+
 class MotoristaDAO:
     def __init__(self, database):
         self.db = database
-    
+
     def create(self, motorista: Motorista):
         try:
             res = self.db.collection.insert_one(vars(motorista))
@@ -26,11 +27,13 @@ class MotoristaDAO:
     def update(self, id: str):
         try:
             motorista = self.db.collection.find_one({"id": ObjectId(id)})
-            nota = [i['nota'] for i in motorista['corridas']]
+            nota = [i["nota"] for i in motorista["corridas"]]
             notafinal = sum(nota) / len(nota)
-            motorista['nota'] = notafinal
+            motorista["nota"] = notafinal
 
-            res = self.db.collection.update_one({"_id": ObjectId(id)}, {'$set': motorista})
+            res = self.db.collection.update_one(
+                {"_id": ObjectId(id)}, {"$set": motorista}
+            )
             print(f"Motorista  updated: {res.modified_count} document(s) modified")
             return res.modified_count
         except Exception as e:

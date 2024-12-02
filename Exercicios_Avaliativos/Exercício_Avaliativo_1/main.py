@@ -1,6 +1,6 @@
-# Nome: Álvaro Lúcio Almeida Ribeiro 
-# Matrícula: 163 
-# Exercício Avaliativo 1 
+# Nome: Álvaro Lúcio Almeida Ribeiro
+# Matrícula: 163
+# Exercício Avaliativo 1
 
 from database import Database
 from motoristaDAO import MotoristaDAO
